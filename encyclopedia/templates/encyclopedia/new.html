@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>New entry</h1>
+    {% if messages %}
+        {% for m in messages %}
+        <div>
+            {{ m }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" action="{% url 'newentry'%}" name="form" style="max-width: 50rem;">
+        {% csrf_token %}
+        <div>
+            <label>Title:</label>
+            <input class="form-control" type="text" name="title" placeholder="Title">
+        </div>
+        <div>
+            <label>Details:</label>
+            <textarea name="details" rows="15" class="form-control"></textarea>
+        </div>
+        <div>
+            <br>
+            <input type="submit" value="Save">
+        </div>
+    </form>
+
+{% endblock %}
